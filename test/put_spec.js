@@ -3,7 +3,7 @@ var level = require("level-test")()
   , graph = require("levelgraph")
   , n3 = require("../");
 
-describe("putting n3", function() {
+describe("n3.put", function() {
   
   var db
     , tj = "@prefix c: <http://example.org/cartoons#>.\n" +
@@ -20,25 +20,29 @@ describe("putting n3", function() {
     db.close(done);
   });
 
-  it("should expose a n3.put method", function() {
-    expect(db.n3.put).to.be.a("function");
+  it("should accept a done callback", function(done) {
+    db.n3.put(tj, done);
   });
 
-  describe("n3.put", function() {
-    it("should accept a done callback", function(done) {
-      db.n3.put(tj, done);
-    });
-
-    it("should store a triple", function(done) {
-      db.n3.put(tj, function() {
-        db.get({
+  it("should store a triple", function(done) {
+    db.n3.put(tj, function() {
+      db.get({
           subject: "http://example.org/cartoons#Tom"
-         }, function(err, triple) {
-           expect(triple).to.exist;
-           done();
-         });
+        , predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
+        , object: 'http://example.org/cartoons#Cat'
+      }, function(err, triple) {
+        expect(triple).to.exist;
+        done();
       });
     });
   });
 
+  it("should store three triples", function(done) {
+    db.n3.put(tj, function() {
+      db.get({}, function(err, triples) {
+        expect(triples).to.have.property("length", 3);
+        done();
+      });
+    });
+  });
 });
