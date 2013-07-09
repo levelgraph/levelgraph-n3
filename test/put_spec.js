@@ -20,17 +20,17 @@ describe("putting n3", function() {
     db.close(done);
   });
 
-  it("should expose a putN3 method", function() {
-    expect(db.putN3).to.be.a("function");
+  it("should expose a n3.put method", function() {
+    expect(db.n3.put).to.be.a("function");
   });
 
-  describe("putN3", function() {
+  describe("n3.put", function() {
     it("should accept a done callback", function(done) {
-      db.putN3(tj, done);
+      db.n3.put(tj, done);
     });
 
     it("should store a triple", function(done) {
-      db.putN3(tj, function() {
+      db.n3.put(tj, function() {
         db.get({
           subject: "http://example.org/cartoons#Tom"
          }, function(err, triple) {

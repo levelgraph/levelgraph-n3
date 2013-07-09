@@ -3,8 +3,14 @@ var n3 = require("n3")
   , PassThrough = require("stream").PassThrough;
 
 function levelgraphN3(graphdb) {
+  
+  if (graphdb.n3) {
+    return graphdb;
+  }
 
-  graphdb.putN3 = function(data, done) {
+  graphdb.n3 = {};
+
+  graphdb.n3.put = function(data, done) {
     var parser = new n3.Parser()
       , putStream = graphdb.putStream()
       , inStream = data;
