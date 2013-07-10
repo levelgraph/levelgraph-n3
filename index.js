@@ -1,6 +1,8 @@
 
 var n3 = require("n3")
-  , PassThrough = require("stream").PassThrough;
+  , PassThrough = require("stream").PassThrough
+  , triplesToN3 = require("./lib/triplesToN3Stream")
+  , concat = require("concat-stream");
 
 function levelgraphN3(graphdb) {
   
@@ -10,17 +12,28 @@ function levelgraphN3(graphdb) {
 
   graphdb.n3 = {};
 
+  graphdb.n3.get = function(pattern, callback) {
+    var stream = graphdb.getStream(pattern)
+      , wrapped = function(result) {
+                    callback(null, result);
+                  }
+
+    stream.on("error", callback);
+    
+    return stream.pipe(triplesToN3()).pipe(concat(wrapped));
+  };
+
   graphdb.n3.put = function(data, done) {
     var parser = new n3.Parser()
       , putStream = graphdb.putStream()
       , inStream = data;
 
-    putStream.on("finish", done);
+    putStream.on("close", done);
 
     if (typeof inStream === 'string') {
-      inStream = new PassThrough();      
+      inStream = new PassThrough();
       inStream.end(data);
-    }    
+    }
 
     parser.parse(inStream, function(err, triple) {
       if (err) {

@@ -24,6 +24,7 @@
     "level-test": "~1.2.1"
   },
   "dependencies": {
-    "n3": "~0.1.1"
+    "n3": "~0.1.1",
+    "concat-stream": "~1.0.0"
   }
 }

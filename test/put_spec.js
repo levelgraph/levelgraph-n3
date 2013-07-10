@@ -9,7 +9,8 @@ describe("n3.put", function() {
     , tj = "@prefix c: <http://example.org/cartoons#>.\n" +
            "c:Tom a c:Cat.\n" +
            "c:Jerry a c:Mouse;\n" +
-           "        c:smarterThan c:Tom.";
+           "        c:smarterThan c:Tom;\n" +
+           "        c:place \"fantasy\".";
 
 
   beforeEach(function() {
@@ -39,7 +40,9 @@ describe("n3.put", function() {
 
   it("should store three triples", function(done) {
     db.n3.put(tj, function() {
-      db.get({}, function(err, triples) {
+      db.get({
+          subject: "http://example.org/cartoons#Jerry"
+      }, function(err, triples) {
         expect(triples).to.have.property("length", 3);
         done();
       });
