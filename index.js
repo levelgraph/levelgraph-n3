@@ -12,15 +12,19 @@ function levelgraphN3(graphdb) {
 
   graphdb.n3 = {};
 
+  graphdb.n3.getStream = function(pattern) {
+    return graphdb.getStream(pattern).pipe(triplesToN3());
+  };
+
   graphdb.n3.get = function(pattern, callback) {
-    var stream = graphdb.getStream(pattern)
+    var stream = graphdb.n3.getStream(pattern)
       , wrapped = function(result) {
                     callback(null, result);
                   }
 
     stream.on("error", callback);
     
-    return stream.pipe(triplesToN3()).pipe(concat(wrapped));
+    return stream.pipe(concat(wrapped));
   };
 
   graphdb.n3.put = function(data, done) {
