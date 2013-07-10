@@ -67,4 +67,52 @@ describe("n3.get", function() {
       });
     });
   });
+
+  it("should encode literals", function(done) {
+    db.put({
+        subject: "http://example.org/cartoons#tom"
+      , predicate: "http://example.org/cartoons#tall"
+      , object: "\"22\""
+    }, function() {
+      db.n3.get({
+        subject: "http://example.org/cartoons#tom"
+      }, function(err, triples) {
+        var expected = "<http://example.org/cartoons#tom> <http://example.org/cartoons#tall> \"22\" .\n"
+        expect(triples).to.eql(expected);
+        done();
+      });
+    });
+  });
+
+  it("should encode literals without quotes", function(done) {
+    db.put({
+        subject: "http://example.org/cartoons#tom"
+      , predicate: "http://example.org/cartoons#tall"
+      , object: "22"
+    }, function() {
+      db.n3.get({
+        subject: "http://example.org/cartoons#tom"
+      }, function(err, triples) {
+        var expected = "<http://example.org/cartoons#tom> <http://example.org/cartoons#tall> \"22\" .\n"
+        expect(triples).to.eql(expected);
+        done();
+      });
+    });
+  });
+
+  it("should encode numbers", function(done) {
+    db.put({
+        subject: "http://example.org/cartoons#tom"
+      , predicate: "http://example.org/cartoons#tall"
+      , object: 22
+    }, function() {
+      db.n3.get({
+        subject: "http://example.org/cartoons#tom"
+      }, function(err, triples) {
+        var expected = "<http://example.org/cartoons#tom> <http://example.org/cartoons#tall> \"22\" .\n"
+        expect(triples).to.eql(expected);
+        done();
+      });
+    });
+  });
 });
