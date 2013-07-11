@@ -6,7 +6,13 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha test"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcollina/levelgraph-n3.git"
+  },
+  "bugs": {
+    "url": "http://github.com/mcollina/levelgraph-n3/issues"
+  },
   "keywords": [
     "levelgraph",
     "graph",
@@ -22,7 +28,8 @@
   "devDependencies": {
     "mocha": "~1.10.0",
     "levelgraph": "~0.5.2",
-    "level-test": "~1.2.1"
+    "level-test": "~1.2.1",
+    "chai": "~1.7.2"
   },
   "dependencies": {
     "n3": "~0.1.1",
