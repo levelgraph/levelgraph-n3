@@ -1,7 +1,7 @@
 {
   "name": "levelgraph-n3",
   "version": "0.0.0",
-  "description": "LevelGraph plugin that add the ability to load and store n3 (turtle) files.",
+  "description": "LevelGraph plugin that add the ability to load and store n3/turtle files.",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha test"
@@ -14,7 +14,8 @@
     "turtle",
     "linked",
     "data",
-    "linked data"
+    "linked data",
+    "n3"
   ],
   "author": "",
   "license": "MIT",
