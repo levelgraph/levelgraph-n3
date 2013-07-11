@@ -5,12 +5,12 @@ var n3 = require("n3")
   , concat = require("concat-stream");
 
 function levelgraphN3(db) {
+  
+  if (db.n3) {
+    return db;
+  }
 
   var graphdb = Object.create(db);
-  
-  if (graphdb.n3) {
-    return graphdb;
-  }
 
   graphdb.n3 = {};
 
