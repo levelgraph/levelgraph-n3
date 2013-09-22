@@ -64,10 +64,14 @@ stream.on("data", function(data) {
 stream.on("end", done);
 ```
 
-### Joins
+### Exporting NTriples from LevelGraph
 
-__LevelGraph-N3__ allows to create ntriples as a result of a standard `join` method of __LevelGraph__,
-like so:
+__LevelGraph-N3__ allows to export ntriples from a __LevelGraph__ database.
+__LevelGraph-N3__ augments the a standard `join` method with a `{ n3: ... }` option
+that specifies the subject, predicate and object of the created triples.
+It follows the same structure of the `{ materialized: ... }` option (see https://github.com/mcollina/levelgraph#joins).
+
+Here is an example:
 ```
 db.join([{
     subject: db.v("s")
@@ -84,7 +88,7 @@ db.join([{
 });
 ```
 
-It also supports the `joinStream`.
+It also supported by the `joinStream` method.
 
 ## Contributing to LevelGraph-N3
 
