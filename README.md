@@ -66,7 +66,8 @@ stream.on("end", done);
 
 ### Joins
 
-__LevelGraph-N3__ augments the standard `join` method of __LevelGraph__:
+__LevelGraph-N3__ allows to create ntriples as a result of a standard `join` method of __LevelGraph__,
+like so:
 ```
 db.join([{
     subject: db.v("s")
