@@ -20,29 +20,25 @@ function levelgraphN3(db) {
   graphdb.n3.get = wrapCallback('getStream');
 
   graphdb.n3.put = function(data, done) {
-    var parser = new n3.Parser()
-      , putStream = graphdb.putStream()
-      , inStream = data;
+    var stream = this.putStream();
+    
+    stream.on("close", done)
+    stream.end(data)
 
-    putStream.on("close", done);
+    return this;
+  };
 
-    if (typeof inStream === 'string') {
-      inStream = new PassThrough();
-      inStream.end(data);
-    }
+  graphdb.n3.putStream = function() {
+    var parser = new n3.Transform()
+      , putStream = graphdb.putStream();
 
-    parser.parse(inStream, function(err, triple) {
-      if (err) {
-        putStream.emit("error", err);
-        return;
-      }
+    putStream.on("close", parser.emit.bind(parser, "close"));
+    putStream.on("finish", parser.emit.bind(parser, "finish"));
+    putStream.on("error", parser.emit.bind(parser, "error"));
 
-      if (triple) {
-        putStream.write(triple);
-      } else {
-        putStream.end();
-      }
-    });
+    parser.pipe(putStream);
+
+    return parser;
   };
 
   graphdb.joinStream = function(conditions, options) {
