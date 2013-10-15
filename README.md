@@ -33,10 +33,23 @@ var levelgraph = require("levelgraph")
   , db         = n3(levelgraph("yourdb"));
 ```
 
+### Importing n3 files
+
+```js
+var fs = require("fs");
+
+var stream = fs.createReadStream("./triples.n3")
+               .pipe(db.n3.putStream());
+
+stream.on("finish", function() {
+  console.log("Import completed");
+});
+```
+
 ### Get and Put
 
 Storing an N3 file in the database is extremey easy:
-```
+```js
 var turtle = "@prefix c: <http://example.org/cartoons#>.\n" +
              "c:Tom a c:Cat.\n" +
              "c:Jerry a c:Mouse;\n" +
@@ -49,14 +62,14 @@ db.n3.put(turtle, function(err) {
 ```
 
 Retrieving it through pattern-matching is extremely easy:
-```
+```js
 db.n3.get({ subject: "http://example.org/cartoons#Tom" }, function(err, turtle) {
   // turtle is "<http://example.org/cartoons#Tom> a <http://example.org/cartoons#Cat> .\n";
 });
 ```
 
 It even support a Stream interface:
-```
+```js
 var stream = kdb.n3.getStream({ subject: "http://example.org/cartoons#Tom" });
 stream.on("data", function(data) {
   // data is "<http://example.org/cartoons#Tom> a <http://example.org/cartoons#Cat> .\n";
