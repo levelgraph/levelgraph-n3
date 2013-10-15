@@ -1,6 +1,5 @@
 
 var n3 = require("n3")
-  , PassThrough = require("stream").PassThrough
   , triplesToN3 = require("./lib/triplesToN3Stream")
   , concat = require("concat-stream");
 
