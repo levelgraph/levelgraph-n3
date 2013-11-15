@@ -34,7 +34,7 @@ describe("augmented db.join", function() {
           , object: db.v("s")
         }
       }, function(err, triples) {
-        expect(triples).to.eql("<http://example.org/cartoons#Tom> <http://example.org/cartoons#dumberThan> <http://example.org/cartoons#Jerry> .\n");
+        expect(triples).to.eql("<http://example.org/cartoons#Tom> <http://example.org/cartoons#dumberThan> <http://example.org/cartoons#Jerry>.\n");
         done();
       });
     });

@@ -32,7 +32,7 @@
     "chai": "~1.8.0"
   },
   "dependencies": {
-    "n3": "~0.1.5",
+    "n3": "~0.1.8",
     "readable-stream": ">= 1.0.2 < 2.0.0",
     "concat-stream": "~1.0.0"
   }
