@@ -30,7 +30,7 @@ describe("n3.get", function() {
     });
   });
 
-  it.skip("should convert 'rdf-type' to 'a'", function(done) {
+  it("should convert 'rdf-type' to 'a'", function(done) {
     db.put({
         subject: "http://example.org/cartoons#tom"
       , predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
@@ -46,7 +46,7 @@ describe("n3.get", function() {
     });
   });
 
-  it.skip("should convert two triples into N3, reusing the subject", function(done) {
+  it("should convert two triples into N3, reusing the subject", function(done) {
     db.put([{
         subject: "http://example.org/cartoons#Tom"
       , predicate: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
@@ -60,8 +60,8 @@ describe("n3.get", function() {
         subject: "http://example.org/cartoons#Tom"
       }, function(err, triples) {
         var expected = "" +
-          "<http://example.org/cartoons#Tom> <http://example.org/cartoons#dumberThan> <http://example.org/cartoons#Jerry> ;\n" + 
-          "    a <http://example.org/cartoons#cat> .\n";
+          "<http://example.org/cartoons#Tom> <http://example.org/cartoons#dumberThan> <http://example.org/cartoons#Jerry>;\n" + 
+          "    a <http://example.org/cartoons#cat>.\n";
         expect(triples).to.eql(expected);
         done();
       });
