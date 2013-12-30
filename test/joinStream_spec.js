@@ -36,7 +36,7 @@ describe("augmented db.joinStream", function() {
         }
       });
       
-      stream.pipe(concat(function(triples) {
+      stream.pipe(concat({ encoding: 'string' }, function(triples) {
         expect(triples).to.eql("<http://example.org/cartoons#Tom> <http://example.org/cartoons#dumberThan> <http://example.org/cartoons#Jerry>.\n");
         done();
       }));

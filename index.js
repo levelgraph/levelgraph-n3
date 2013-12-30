@@ -62,7 +62,7 @@ function levelgraphN3(db) {
     if (options.n3) {
       stream = this.joinStream(conditions, options)
 
-      stream.pipe(concat(function(result) {
+      stream.pipe(concat({ encoding: 'string' }, function(result) {
         callback(null, result);
       }));
 
@@ -90,7 +90,7 @@ function wrapCallback(method) {
 
     stream.on("error", callback);
 
-    stream.pipe(concat(wrapped));
+    stream.pipe(concat({ encoding: 'string' }, wrapped));
   };
 }
 

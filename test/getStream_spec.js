@@ -26,7 +26,7 @@ describe("n3.getStream", function() {
                      subject: "http://example.org/cartoons#tom"
                    });
 
-      stream.pipe(concat(function(triples) {
+      stream.pipe(concat({ encoding: 'string' }, function(triples) {
         expect(triples).to.eql("<http://example.org/cartoons#tom> <http://example.org/cartoons#dumberthan> <http://example.org/cartoons#jerry>.\n");
         done();
       }));
@@ -47,7 +47,7 @@ describe("n3.getStream", function() {
                      subject: "http://example.org/cartoons#Tom"
                    });
 
-      stream.pipe(concat(function(triples) {
+      stream.pipe(concat({ encoding: 'string' }, function(triples) {
         var expected = "" +
           "<http://example.org/cartoons#Tom> <http://example.org/cartoons#dumberThan> <http://example.org/cartoons#Jerry>;\n" + 
           "    a <http://example.org/cartoons#cat>.\n";
