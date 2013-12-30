@@ -4,7 +4,7 @@ var level = require("level-test")()
   , n3 = require("../")
   , concat = require("concat-stream");
 
-describe("augmented db.joinStream", function() {
+describe("augmented db.searchStream", function() {
   
   var db
     , tj = "@prefix c: <http://example.org/cartoons#>.\n" +
@@ -24,7 +24,7 @@ describe("augmented db.joinStream", function() {
 
   it("should generate a n3 triple", function(done) {
     db.n3.put(tj, function() {
-      var stream = db.joinStream([{
+      var stream = db.searchStream([{
           subject: db.v("s")
         , predicate: "http://example.org/cartoons#smarterThan"
         , object: db.v("o")

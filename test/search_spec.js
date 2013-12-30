@@ -3,7 +3,7 @@ var level = require("level-test")()
   , graph = require("levelgraph")
   , n3 = require("../");
 
-describe("augmented db.join", function() {
+describe("augmented db.search", function() {
   
   var db
     , tj = "@prefix c: <http://example.org/cartoons#>.\n" +
@@ -23,7 +23,7 @@ describe("augmented db.join", function() {
 
   it("should generate a n3 triple", function(done) {
     db.n3.put(tj, function() {
-      db.join([{
+      db.search([{
           subject: db.v("s")
         , predicate: "http://example.org/cartoons#smarterThan"
         , object: db.v("o")
