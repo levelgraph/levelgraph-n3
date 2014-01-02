@@ -40,14 +40,14 @@ function levelgraphN3(db) {
     return parser;
   };
 
-  graphdb.joinStream = function(conditions, options) {
+  graphdb.searchStream = function(conditions, options) {
     var stream;
 
     if (options && options.n3) {
       options.materialized = options.n3;
     }
 
-    stream = db.joinStream(conditions, options);
+    stream = db.searchStream(conditions, options);
 
     if (options && options.n3) {
       stream = stream.pipe(new n3.StreamWriter());
@@ -56,13 +56,13 @@ function levelgraphN3(db) {
     return stream;
   };
 
-  graphdb.join = function(conditions, options, callback) {
+  graphdb.search = function(conditions, options, callback) {
     var stream;
 
     if (options.n3) {
-      stream = this.joinStream(conditions, options)
+      stream = this.searchStream(conditions, options)
 
-      stream.pipe(concat(function(result) {
+      stream.pipe(concat({ encoding: 'string' }, function(result) {
         callback(null, result);
       }));
 
@@ -71,7 +71,7 @@ function levelgraphN3(db) {
       return this;
     }
 
-    return db.join(conditions, options, callback);
+    return db.search(conditions, options, callback);
   };
 
   return graphdb;
@@ -90,7 +90,7 @@ function wrapCallback(method) {
 
     stream.on("error", callback);
 
-    stream.pipe(concat(wrapped));
+    stream.pipe(concat({ encoding: 'string' }, wrapped));
   };
 }
 

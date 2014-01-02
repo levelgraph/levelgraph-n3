@@ -1,9 +1,10 @@
 
 var level = require("level-test")()
   , graph = require("levelgraph")
-  , n3 = require("../");
+  , n3 = require("../")
+  , concat = require("concat-stream");
 
-describe("augmented db.join", function() {
+describe("augmented db.searchStream", function() {
   
   var db
     , tj = "@prefix c: <http://example.org/cartoons#>.\n" +
@@ -23,7 +24,7 @@ describe("augmented db.join", function() {
 
   it("should generate a n3 triple", function(done) {
     db.n3.put(tj, function() {
-      db.join([{
+      var stream = db.searchStream([{
           subject: db.v("s")
         , predicate: "http://example.org/cartoons#smarterThan"
         , object: db.v("o")
@@ -33,10 +34,12 @@ describe("augmented db.join", function() {
           , predicate: "http://example.org/cartoons#dumberThan"
           , object: db.v("s")
         }
-      }, function(err, triples) {
+      });
+      
+      stream.pipe(concat({ encoding: 'string' }, function(triples) {
         expect(triples).to.eql("<http://example.org/cartoons#Tom> <http://example.org/cartoons#dumberThan> <http://example.org/cartoons#Jerry>.\n");
         done();
-      });
+      }));
     });
   });
 });

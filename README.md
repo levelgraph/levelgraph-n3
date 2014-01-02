@@ -3,17 +3,18 @@ LevelGraph-N3
 
 ![Logo](https://github.com/mcollina/node-levelgraph/raw/master/logo.png)
 
+[![Build Status](https://travis-ci.org/mcollina/levelgraph-n3.png)](https://travis-ci.org/mcollina/levelgraph-n3)
+[![Coverage Status](https://coveralls.io/repos/mcollina/levelgraph-n3/badge.png)](https://coveralls.io/r/mcollina/levelgraph-n3)
+[![Dependency Status](https://david-dm.org/mcollina/levelgraph-n3.png?theme=shields.io)](https://david-dm.org/mcollina/levelgraph-n3)
+
 __LevelGraph-N3__ is a plugin for
 [LevelGraph](http://github.com/mcollina/levelgraph) that adds the
 ability to store, fetch and process N3 and turtle files.
 
-[![Build
-Status](https://travis-ci.org/mcollina/levelgraph-n3.png)](https://travis-ci.org/mcollina/levelgraph-n3)
-
 ## Install on Node.js
 
-```
-npm install levelgraph levelgraph-n3 --save
+```shell
+$ npm install levelgraph levelgraph-n3 --save
 ```
 
 At the moment it requires node v0.10.x, but the port to node v0.8.x
@@ -27,10 +28,10 @@ TO BE DONE!
 ## Usage
 
 Adding support for N3 to LevelGraph is easy:
-```
-var levelgraph = require("levelgraph")
-  , n3         = require("levelgraph-n3")
-  , db         = n3(levelgraph("yourdb"));
+```js
+var levelgraph = require("levelgraph"),
+    n3         = require("levelgraph-n3"),
+    db         = n3(levelgraph("yourdb"));
 ```
 
 ### Importing n3 files
@@ -70,7 +71,7 @@ db.n3.get({ subject: "http://example.org/cartoons#Tom" }, function(err, turtle) 
 
 It even support a Stream interface:
 ```js
-var stream = kdb.n3.getStream({ subject: "http://example.org/cartoons#Tom" });
+var stream = db.n3.getStream({ subject: "http://example.org/cartoons#Tom" });
 stream.on("data", function(data) {
   // data is "<http://example.org/cartoons#Tom> a <http://example.org/cartoons#Cat> .\n";
 });
@@ -80,28 +81,28 @@ stream.on("end", done);
 ### Exporting NTriples from LevelGraph
 
 __LevelGraph-N3__ allows to export ntriples from a __LevelGraph__ database.
-__LevelGraph-N3__ augments the a standard `join` method with a `{ n3: ... }` option
+__LevelGraph-N3__ augments the a standard `search` method with a `{ n3: ... }` option
 that specifies the subject, predicate and object of the created triples.
-It follows the same structure of the `{ materialized: ... }` option (see https://github.com/mcollina/levelgraph#joins).
+It follows the same structure of the `{ materialized: ... }` option (see https://github.com/mcollina/levelgraph#searches).
 
 Here is an example:
-```
-db.join([{
-    subject: db.v("s")
-  , predicate: "http://example.org/cartoons#smarterThan"
-  , object: db.v("o")
+```js
+db.search([{
+  subject: db.v("s"),
+  predicate: "http://example.org/cartoons#smarterThan",
+  object: db.v("o")
 }], { 
   n3: {
-      subject: db.v("o")
-    , predicate: "http://example.org/cartoons#dumberThan"
-    , object: db.v("s")
+    subject: db.v("o"),
+    predicate: "http://example.org/cartoons#dumberThan",
+    object: db.v("s")
   }
 }, function(err, turtle) {
   // turtle is "<http://example.org/cartoons#Tom> <http://example.org/cartoons#dumberThan> <http://example.org/cartoons#Jerry> .\n"
 });
 ```
 
-It also supported by the `joinStream` method.
+It also supported by the `searchStream` method.
 
 ## Contributing to LevelGraph-N3
 
