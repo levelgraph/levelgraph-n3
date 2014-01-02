@@ -4,7 +4,9 @@
   "description": "LevelGraph plugin that add the ability to load and store n3/turtle files.",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec test"
+    "test": "./node_modules/.bin/mocha --reporter spec test",
+    "coverage": "rm -rf coverage; istanbul cover _mocha -- --recursive --reporter spec --bail",
+    "publish-coverage": "cat coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -37,6 +39,8 @@
     "mocha": "~1.16.2",
     "levelgraph": "~0.7.1",
     "level-test": "~1.5.2",
-    "chai": "~1.8.1"
+    "chai": "~1.8.1",
+    "coveralls": "~2.6.1",
+    "istanbul": "~0.2.3"
   }
 }
