@@ -1,14 +1,11 @@
-
-var level = require("level-test")()
-  , graph = require("levelgraph")
-  , n3 = require("../");
+var helper = require('./helper');
 
 describe("n3.get", function() {
-  
+
   var db;
 
   beforeEach(function() {
-    db = n3(graph(level()));
+    db = helper.getDB();
   }); 
 
   afterEach(function(done) {

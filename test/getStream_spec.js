@@ -1,16 +1,13 @@
-
-var level = require("level-test")()
-  , graph = require("levelgraph")
-  , n3 = require("../")
-  , concat = require("concat-stream");
+var helper = require('./helper'),
+    concat = require('concat-stream');
 
 describe("n3.getStream", function() {
-  
+
   var db;
 
   beforeEach(function() {
-    db = n3(graph(level()));
-  }); 
+    db = helper.getDB();
+  });
 
   afterEach(function(done) {
     db.close(done);
