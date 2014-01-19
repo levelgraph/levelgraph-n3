@@ -28,16 +28,16 @@
   "author": "Matteo Collina <hello@matteocollina.com>",
   "license": "MIT",
   "dependencies": {
-    "n3": "~0.2.1",
-    "readable-stream": ">= 1.1.9 < 2.0.0",
-    "concat-stream": "~1.4.0"
+    "n3": "~0.2.2",
+    "readable-stream": ">= 1.1.10 < 2.0.0",
+    "concat-stream": "~1.4.1"
   },
   "peerDependencies": {
-    "levelgraph": "~0.7.1"
+    "levelgraph": "~0.8.1"
   },
   "devDependencies": {
-    "mocha": "~1.16.2",
-    "levelgraph": "~0.7.1",
+    "mocha": "~1.17.0",
+    "levelgraph": "~0.8.1",
     "level-test": "~1.5.2",
     "chai": "~1.8.1",
     "coveralls": "~2.6.1",
