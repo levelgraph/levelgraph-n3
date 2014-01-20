@@ -17,3 +17,4 @@ npm-debug.log
 docs
 .DS_Store
 coverage/
+bower_components
