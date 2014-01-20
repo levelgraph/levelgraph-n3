@@ -6,32 +6,61 @@ LevelGraph-N3
 [![Build Status](https://travis-ci.org/mcollina/levelgraph-n3.png)](https://travis-ci.org/mcollina/levelgraph-n3)
 [![Coverage Status](https://coveralls.io/repos/mcollina/levelgraph-n3/badge.png)](https://coveralls.io/r/mcollina/levelgraph-n3)
 [![Dependency Status](https://david-dm.org/mcollina/levelgraph-n3.png?theme=shields.io)](https://david-dm.org/mcollina/levelgraph-n3)
+[![Sauce Labs
+Tests](https://saucelabs.com/browser-matrix/levelgraph-n3.svg)](https://saucelabs.com/u/levelgraph-n3)
 
 __LevelGraph-N3__ is a plugin for
 [LevelGraph](http://github.com/mcollina/levelgraph) that adds the
 ability to store, fetch and process N3 and turtle files.
 
-## Install on Node.js
+## Install 
 
+### Node.js
+
+Adding support for N3 to LevelGraph is easy:
 ```shell
 $ npm install levelgraph levelgraph-n3 --save
 ```
+Then in your code:
+```js
+var levelgraph = require('levelgraph'),
+    levelgraphN3 = require('levelgraph-n3'),
+    db = levelgraphN3(levelgraph('yourdb'));
+```
+
 
 At the moment it requires node v0.10.x, but the port to node v0.8.x
 should be straighforward.
 If you need it, just open a pull request.
 
-## Install in the Browser
+### Browser
 
-TO BE DONE!
+If you use [browserify](http://browserify.org/) you can use this package
+in a browser just as in node.js. Please also take a look at [Browserify
+section in LevelGraph package](https://github.com/mcollina/levelgraph#browserify)
+
+You can also use standalone browserified version from `./build`
+directory or use [bower](http://bower.io)
+
+```shell
+$ bower install levelgraph-n3 --save
+```
+It will also install its dependency levelgraph! Now you can simply:
+
+```html
+<script src="bower_components/levelgraph/build/levelgraph.js"></script>
+<script src="bower_components/levelgraph-n3/build/levelgraph-n3.js"></script>
+<script>
+  var db = levelgraphN3(levelgraph('yourdb'));
+</script>
+```
 
 ## Usage
 
-Adding support for N3 to LevelGraph is easy:
+We assume in following examples that you created database as explained
+above!
 ```js
-var levelgraph = require("levelgraph"),
-    n3         = require("levelgraph-n3"),
-    db         = n3(levelgraph("yourdb"));
+var db = levelgraphN3(levelgraph("yourdb"));
 ```
 
 ### Importing n3 files

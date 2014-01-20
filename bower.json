@@ -1,0 +1,8 @@
+{
+  "name": "levelgraph-n3",
+  "version": "0.3.1",
+  "main": "build/levelgraph-n3.js",
+  "dependencies": {
+    "levelgraph": "~0.8.2"
+  }
+}
