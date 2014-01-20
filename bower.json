@@ -1,0 +1,5 @@
+{
+  "name": "levelgraph-n3",
+  "version": "0.3.1",
+  "main": "build/levelgraph-n3.js"
+}
