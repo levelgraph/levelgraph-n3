@@ -133,6 +133,12 @@ db.search([{
 
 It also supported by the `searchStream` method.
 
+## Changes
+
+[CHANGELOG.md](https://github.com/mcollina/levelgraph-n3/blob/master/CHANGELOG.md)
+**including migration info for breaking changes**
+
+
 ## Contributing to LevelGraph-N3
 
 * Check out the latest master to make sure the feature hasn't been
