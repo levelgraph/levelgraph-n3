@@ -1,6 +1,6 @@
 {
   "name": "levelgraph-n3",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "LevelGraph plugin that add the ability to load and store n3/turtle files.",
   "main": "index.js",
   "scripts": {
