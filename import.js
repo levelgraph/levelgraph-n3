@@ -21,9 +21,8 @@ try {
   var dbPath, dbCreate;
 
   dbPath = path.resolve(options.output);
-  var checkExt = path.extname(dbPath);
-  console.log(checkExt);
-  if (checkExt !== '' || checkExt.slice(-1) === '*') {
+
+  if (path.extname(dbPath) !== '') {
     console.log('Error: bad output folder specified.')
     process.exit(0);
   }
