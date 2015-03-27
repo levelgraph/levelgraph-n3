@@ -29,9 +29,13 @@
   "author": "Matteo Collina <hello@matteocollina.com>",
   "license": "MIT",
   "dependencies": {
+    "cli": "^0.6.5",
+    "concat-stream": "~1.4.6",
+    "glob": "^5.0.3",
+    "mkdirp": "^0.5.0",
     "n3": "~0.3.4",
-    "readable-stream": ">= 1.1.13 < 2.0.0",
-    "concat-stream": "~1.4.6"
+    "progress-stream": "^1.0.1",
+    "readable-stream": ">= 1.1.13 < 2.0.0"
   },
   "peerDependencies": {
     "levelgraph": "~>= 0.10 < 0.11"
