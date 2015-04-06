@@ -5,7 +5,8 @@ var levelgraph = require('levelgraph')
   , fs = require('fs')
   , path = require('path')
   , mkdirp = require('mkdirp')
-  , progressStream = require('progress-stream');
+  , progressStream = require('progress-stream')
+  , eos = require('end-of-stream');
 
 var cli = require('cli')
   .enable('glob');
@@ -55,7 +56,7 @@ try {
     if(!options.quiet) console.log('\nNumber of files to be imported: ' + inputfiles.length.toString());
   }
 
-  inputfiles.forEach(function(filepath) {
+  inputfiles.forEach(function (filepath) {
 
     // normalize and resolve given file path
     var n3file = path.resolve(filepath);
@@ -71,20 +72,21 @@ try {
       var progstr = progressStream({
         length: fileStats.size,
         time: 1000
-      }).on('progress', function(progress) {
+      }).on('progress', function (progress) {
         if(!options.quiet) {
+          console.log('\n');
           console.log(progress);
         }
       });
 
       var stream = fs.createReadStream(n3file)
         .pipe(progstr)
-        .on('finish', function() {
-          if (!options.quiet) {
-            console.log('\nImport of ' + path.basename(n3file) + ' completed.\n');
-          }
-        })
         .pipe(db.n3.putStream());
+
+      eos(stream, function (err) {
+        if (err) return console.log('\nError in streaming ' + path.basename(n3file) + ' encountered.');
+        if (!options.quiet) console.log('\n' + path.basename(n3file) + ' imported to levelgraph-n3 database at: ' + dbPath);
+      });
 
     }
 
@@ -93,6 +95,4 @@ try {
 } catch (err) {
   console.error(err);
   process.exit(1);
-} finally {
-  if (!options.quiet) console.log('\nAll files imported to levelgraph-n3 database at: ' + dbPath + '\n');
 }
