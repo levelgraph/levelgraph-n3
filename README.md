@@ -65,6 +65,8 @@ var db = levelgraphN3(levelgraph("yourdb"));
 
 ### Importing n3 files
 
+In code:
+
 ```js
 var fs = require("fs");
 
@@ -75,6 +77,21 @@ stream.on("finish", function() {
   console.log("Import completed");
 });
 ```
+
+Alternatively, you can run the import CLI tool by running `npm install`, then:
+
+```
+./import.js path/to/n3/file(s)
+```
+
+with the following optional flags:
+
+`-o` or `--output` followed by the desired DB path. If not specified, path will be at `./db`.
+
+`-q` or `--quiet` will silence status updates during the import process. Otherwise, progress information is displayed.
+
+File extensions must be `.n3` or `.nt`. Additionally, there is glob support, so for example `*.nt` will import all the matching n-triple files.
+
 
 ### Get and Put
 

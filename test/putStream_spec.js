@@ -19,12 +19,12 @@ describe("n3.putStream", function() {
   });
 
   it("should store some triples", function(done) {
-    var stream = db.n3.putStream()
+    var stream = db.n3.putStream();
     tj.split("\n").forEach(function(line) {
       stream.write(line + "\n")
-    })
-    stream.end()
-    stream.on('finish', function() {
+    });
+    stream.end();
+    stream.on('close', function() {
       db.get({
           subject: "http://example.org/cartoons#Tom"
         , predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'

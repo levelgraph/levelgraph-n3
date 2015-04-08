@@ -18,3 +18,5 @@ docs
 .DS_Store
 coverage/
 bower_components
+
+db/
