@@ -62,8 +62,8 @@ try {
     var n3file = path.resolve(filepath);
 
     // must be .nt or .n3 file
-    if (path.extname(n3file) !== '.nt' && path.extname(n3file) !== 'n3') {
-      console.log('Invalid file. Must be .nt or n3 file.');
+    if (path.extname(n3file) !== '.nt' && path.extname(n3file) !== '.n3') {
+      console.log('Invalid file. Must be .nt or .n3 file.');
     } else {
     
       if (!options.quiet) console.log('\nImporting RDF N-triple file: ' + n3file);
