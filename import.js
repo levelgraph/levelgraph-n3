@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var levelgraph = require('levelgraph')
+  , level = require('level')
   , levelgraphN3 = require('./')
   , fs = require('fs')
   , path = require('path')
@@ -27,7 +28,7 @@ try {
     console.log('Error: bad output folder specified.')
     process.exit(0);
   }
-  
+
   dbCreate = mkdirp.sync(dbPath);
   if (!dbCreate) {
     if (!options.quiet) console.log('\nExisting LevelGraph database at: ' + dbPath);
@@ -36,7 +37,7 @@ try {
   }
 
   // initialize levelgraph-n3
-  var db = levelgraphN3(levelgraph(dbPath));
+  var db = levelgraphN3(levelgraph(level(dbPath)));
 
 } catch (err) {
   console.error(err);
@@ -65,7 +66,7 @@ try {
     if (path.extname(n3file) !== '.nt' && path.extname(n3file) !== '.n3') {
       console.log('Invalid file. Must be .nt or .n3 file.');
     } else {
-    
+
       if (!options.quiet) console.log('\nImporting RDF N-triple file: ' + n3file);
 
       var fileStats = fs.statSync(n3file);

@@ -1,6 +1,7 @@
 var exec = require('child_process').exec
   , fs = require('fs')
   , graph = require('levelgraph')
+  , level = require('level')
   , n3 = require('../');
 
 describe("CLI: import n3 file(s)", function() {
@@ -20,7 +21,7 @@ describe("CLI: import n3 file(s)", function() {
         import_stderr = stderr;
         done();
     });
-  }); 
+  });
 
   after(function(done) {
     exec('rm -r import_test_db_0123',
@@ -44,12 +45,12 @@ describe("CLI: import n3 file(s)", function() {
   });
 
   it("should allow triples to then be queried", function(done) {
-    var db = n3(graph(test_db_path));
-    db.search({
+    var db = n3(graph(level(test_db_path)));
+    db.search([{
         subject: "http://dbpedia.org/resource/Abraham_Lincoln"
       , predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
       , object: db.v('type')
-    }, {}, function (err, result) {
+    }], {}, function (err, result) {
       expect(result[0]['type']).to.equal('http://xmlns.com/foaf/0.1/Person');
       done();
     });

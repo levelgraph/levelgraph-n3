@@ -13,25 +13,23 @@ __LevelGraph-N3__ is a plugin for
 [LevelGraph](http://github.com/mcollina/levelgraph) that adds the
 ability to store, fetch and process N3 and turtle files.
 
-## Install 
+## Install
 
 ### Node.js
 
 Adding support for N3 to LevelGraph is easy:
 ```shell
-$ npm install levelgraph levelgraph-n3 --save
+$ npm install level levelgraph levelgraph-n3 --save
 ```
 Then in your code:
 ```js
-var levelgraph = require('levelgraph'),
+var level = require('level'),
+    levelgraph = require('levelgraph'),
     levelgraphN3 = require('levelgraph-n3'),
-    db = levelgraphN3(levelgraph('yourdb'));
+    db = levelgraphN3(levelgraph(level('yourdb')));
 ```
 
 
-At the moment it requires node v0.10.x, but the port to node v0.8.x
-should be straighforward.
-If you need it, just open a pull request.
 
 ### Browser
 
@@ -39,28 +37,13 @@ If you use [browserify](http://browserify.org/) you can use this package
 in a browser just as in node.js. Please also take a look at [Browserify
 section in LevelGraph package](https://github.com/mcollina/levelgraph#browserify)
 
-You can also use standalone browserified version from `./build`
-directory or use [bower](http://bower.io)
-
-```shell
-$ bower install levelgraph-n3 --save
-```
-It will also install its dependency levelgraph! Now you can simply:
-
-```html
-<script src="bower_components/levelgraph/build/levelgraph.js"></script>
-<script src="bower_components/levelgraph-n3/build/levelgraph-n3.js"></script>
-<script>
-  var db = levelgraphN3(levelgraph('yourdb'));
-</script>
-```
 
 ## Usage
 
 We assume in following examples that you created database as explained
 above!
 ```js
-var db = levelgraphN3(levelgraph("yourdb"));
+var db = levelgraphN3(levelgraph(level("yourdb")));
 ```
 
 ### Importing n3 files
@@ -137,7 +120,7 @@ db.search([{
   subject: db.v("s"),
   predicate: "http://example.org/cartoons#smarterThan",
   object: db.v("o")
-}], { 
+}], {
   n3: {
     subject: db.v("o"),
     predicate: "http://example.org/cartoons#dumberThan",
@@ -174,7 +157,7 @@ It also supported by the `searchStream` method.
 
 ## LICENSE - "MIT License"
 
-Copyright (c) 2013 Matteo Collina (http://matteocollina.com)
+Copyright (c) 2013-2015 Matteo Collina (http://matteocollina.com)
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
