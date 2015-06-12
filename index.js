@@ -1,4 +1,7 @@
 
+// fix for browserify
+require('stream');
+
 var n3 = require("n3")
   , concat = require("concat-stream");
 
