@@ -46,11 +46,11 @@ describe("CLI: import n3 file(s)", function() {
 
   it("should allow triples to then be queried", function(done) {
     var db = n3(graph(level(test_db_path)));
-    db.search({
+    db.search([{
         subject: "http://dbpedia.org/resource/Abraham_Lincoln"
       , predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
       , object: db.v('type')
-    }, {}, function (err, result) {
+    }], {}, function (err, result) {
       expect(result[0]['type']).to.equal('http://xmlns.com/foaf/0.1/Person');
       done();
     });
