@@ -20,3 +20,4 @@ coverage/
 bower_components
 
 db/
+package-lock.json
