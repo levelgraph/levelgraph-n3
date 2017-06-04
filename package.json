@@ -12,10 +12,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mcollina/levelgraph-n3.git"
+    "url": "https://github.com/levelgraph/levelgraph-n3.git"
   },
   "bugs": {
-    "url": "http://github.com/mcollina/levelgraph-n3/issues"
+    "url": "http://github.com/levelgraph/levelgraph-n3/issues"
   },
   "keywords": [
     "levelgraph",

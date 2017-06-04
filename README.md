@@ -1,16 +1,16 @@
 LevelGraph-N3
 ===========
 
-![Logo](https://github.com/mcollina/node-levelgraph/raw/master/logo.png)
+![Logo](https://github.com/levelgraph/node-levelgraph/raw/master/logo.png)
 
-[![Build Status](https://travis-ci.org/mcollina/levelgraph-n3.png)](https://travis-ci.org/mcollina/levelgraph-n3)
-[![Coverage Status](https://coveralls.io/repos/mcollina/levelgraph-n3/badge.png)](https://coveralls.io/r/mcollina/levelgraph-n3)
-[![Dependency Status](https://david-dm.org/mcollina/levelgraph-n3.png?theme=shields.io)](https://david-dm.org/mcollina/levelgraph-n3)
+[![Build Status](https://travis-ci.org/levelgraph/levelgraph-n3.png)](https://travis-ci.org/levelgraph/levelgraph-n3)
+[![Coverage Status](https://coveralls.io/repos/levelgraph/levelgraph-n3/badge.png)](https://coveralls.io/r/levelgraph/levelgraph-n3)
+[![Dependency Status](https://david-dm.org/levelgraph/levelgraph-n3.png?theme=shields.io)](https://david-dm.org/levelgraph/levelgraph-n3)
 [![Sauce Labs
 Tests](https://saucelabs.com/browser-matrix/levelgraph-n3.svg)](https://saucelabs.com/u/levelgraph-n3)
 
 __LevelGraph-N3__ is a plugin for
-[LevelGraph](http://github.com/mcollina/levelgraph) that adds the
+[LevelGraph](http://github.com/levelgraph/levelgraph) that adds the
 ability to store, fetch and process N3 and turtle files.
 
 ## Install
@@ -35,7 +35,7 @@ var level = require('level'),
 
 If you use [browserify](http://browserify.org/) you can use this package
 in a browser just as in node.js. Please also take a look at [Browserify
-section in LevelGraph package](https://github.com/mcollina/levelgraph#browserify)
+section in LevelGraph package](https://github.com/levelgraph/levelgraph#browserify)
 
 
 ## Usage
@@ -112,7 +112,7 @@ stream.on("end", done);
 __LevelGraph-N3__ allows to export ntriples from a __LevelGraph__ database.
 __LevelGraph-N3__ augments the a standard `search` method with a `{ n3: ... }` option
 that specifies the subject, predicate and object of the created triples.
-It follows the same structure of the `{ materialized: ... }` option (see https://github.com/mcollina/levelgraph#searches).
+It follows the same structure of the `{ materialized: ... }` option (see https://github.com/levelgraph/levelgraph#searches).
 
 Here is an example:
 ```js
@@ -135,7 +135,7 @@ It also supported by the `searchStream` method.
 
 ## Changes
 
-[CHANGELOG.md](https://github.com/mcollina/levelgraph-n3/blob/master/CHANGELOG.md)
+[CHANGELOG.md](https://github.com/levelgraph/levelgraph-n3/blob/master/CHANGELOG.md)
 **including migration info for breaking changes**
 
 
