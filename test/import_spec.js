@@ -14,7 +14,7 @@ describe("CLI: import n3 file(s)", function() {
     , import_stderr;
 
   before(function(done) {
-    exec('./import.js -q ' + test_file_path + ' -o ' + test_db_path,
+    exec('node import.js -q ' + test_file_path + ' -o ' + test_db_path,
       function (err, stdout, stderr) {
         import_err = err;
         import_stdout = stdout;
@@ -24,9 +24,10 @@ describe("CLI: import n3 file(s)", function() {
   });
 
   after(function(done) {
-    exec('rm -r import_test_db_0123',
-      function (err, stdout, stderr) {
+    fs.rmdir('import_test_db_0123', {recursive: true},
+      function (err) {
         if (err) return done(err);
+        console.log('import_test_db_0123 removed');
         done();
     });
   });
