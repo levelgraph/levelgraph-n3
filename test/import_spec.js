@@ -24,12 +24,17 @@ describe("CLI: import n3 file(s)", function() {
   });
 
   after(function(done) {
-    fs.rmdir('import_test_db_0123', {recursive: true},
-      function (err) {
+    let callback = function (err) {
         if (err) return done(err);
         console.log('import_test_db_0123 removed');
         done();
-    });
+    };
+    // deal with fs.rmdir function signature changes...
+    if (Number(process.version.match(/v([0-9]+)/)[1]) < 12) {
+      fs.rmdir('import_test_db_0123', callback);
+    } else {
+      fs.rmdir('import_test_db_0123', {recursive: true}, callback);
+    }
   });
 
   it("should not produce errors or output during quiet import", function() {
