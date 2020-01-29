@@ -2,7 +2,8 @@ var exec = require('child_process').exec
   , fs = require('fs')
   , graph = require('levelgraph')
   , level = require('level')
-  , n3 = require('../');
+  , n3 = require('../')
+  , rimraf = require('rimraf');
 
 describe("CLI: import n3 file(s)", function() {
 
@@ -24,17 +25,11 @@ describe("CLI: import n3 file(s)", function() {
   });
 
   after(function(done) {
-    let callback = function (err) {
+    rimraf('import_test_db_0123', function (err) {
         if (err) return done(err);
         console.log('import_test_db_0123 removed');
         done();
-    };
-    // deal with fs.rmdir function signature changes...
-    if (Number(process.version.match(/v([0-9]+)/)[1]) < 12) {
-      fs.rmdir('import_test_db_0123', callback);
-    } else {
-      fs.rmdir('import_test_db_0123', {recursive: true}, callback);
-    }
+    });
   });
 
   it("should not produce errors or output during quiet import", function() {
