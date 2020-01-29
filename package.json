@@ -29,14 +29,14 @@
   "license": "MIT",
   "dependencies": {
     "cli": "^1.0.1",
-    "concat-stream": "^1.6.0",
+    "concat-stream": "^2.0.0",
     "end-of-stream": "^1.4.0",
     "glob": "^7.1.2",
     "level": "^6.0.0",
-    "mkdirp": "^0.5.0",
+    "mkdirp": "^1.0.3",
     "n3": "^0.10.0",
     "progress-stream": "^2.0.0",
-    "readable-stream": "^2.2.10"
+    "readable-stream": "^3.5.0"
   },
   "peerDependencies": {
     "levelgraph": "^2.0.0"
