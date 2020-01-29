@@ -21,3 +21,6 @@ bower_components
 
 db/
 package-lock.json
+
+.nyc_output/
+import_test_db_0123

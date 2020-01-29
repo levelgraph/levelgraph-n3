@@ -2,7 +2,8 @@ var exec = require('child_process').exec
   , fs = require('fs')
   , graph = require('levelgraph')
   , level = require('level')
-  , n3 = require('../');
+  , n3 = require('../')
+  , rimraf = require('rimraf');
 
 describe("CLI: import n3 file(s)", function() {
 
@@ -14,7 +15,7 @@ describe("CLI: import n3 file(s)", function() {
     , import_stderr;
 
   before(function(done) {
-    exec('./import.js -q ' + test_file_path + ' -o ' + test_db_path,
+    exec('node import.js -q ' + test_file_path + ' -o ' + test_db_path,
       function (err, stdout, stderr) {
         import_err = err;
         import_stdout = stdout;
@@ -24,9 +25,9 @@ describe("CLI: import n3 file(s)", function() {
   });
 
   after(function(done) {
-    exec('rm -r import_test_db_0123',
-      function (err, stdout, stderr) {
+    rimraf('import_test_db_0123', function (err) {
         if (err) return done(err);
+        console.log('import_test_db_0123 removed');
         done();
     });
   });
